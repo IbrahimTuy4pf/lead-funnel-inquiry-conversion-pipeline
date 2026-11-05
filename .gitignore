@@ -1,0 +1,20 @@
+# Python virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# CatBoost temporary files
+catboost_info/
+
+# Environment variables
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
