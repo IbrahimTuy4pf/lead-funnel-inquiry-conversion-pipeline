@@ -1,0 +1,58 @@
+{
+  "random_seed": 42,
+  "n_splits": 4,
+  "feature_count": 44,
+  "accepted_oof_composite": 0.7418069659128684,
+  "accepted_oof_auc": 0.8855383459852632,
+  "accepted_oof_brier": 0.07979726767555889,
+  "accepted_oof_mean_precision_at_k": 0.5807433926708847,
+  "models": {
+    "quote": "base_rate",
+    "prospect": "lightgbm",
+    "inspection": "lightgbm",
+    "accepted": "lightgbm_xgboost_catboost_blend (weighted-average or stacked meta-model, whichever scored higher OOF)"
+  },
+  "target_encoded_columns": [
+    "utm_campaign",
+    "ga_name_final",
+    "province",
+    "utm_source",
+    "ga_channel_final"
+  ],
+  "hyperparameter_search": {
+    "ran_optuna_search": true,
+    "n_trials": 30,
+    "best_lgb_params": {
+      "n_estimators": 206,
+      "learning_rate": 0.03014685960397882,
+      "num_leaves": 104,
+      "min_child_samples": 80,
+      "subsample": 0.8005696246645068,
+      "colsample_bytree": 0.616227912400657,
+      "reg_alpha": 0.1440391093220846,
+      "reg_lambda": 0.187403249657367,
+      "max_depth": 12
+    },
+    "best_xgb_params": {
+      "n_estimators": 301,
+      "learning_rate": 0.028306259193447,
+      "max_depth": 8,
+      "subsample": 0.6618320609803434,
+      "colsample_bytree": 0.8983292508175686,
+      "reg_alpha": 3.6228188137308934,
+      "reg_lambda": 2.1255663110447505
+    },
+    "best_cat_params": {
+      "iterations": 515,
+      "learning_rate": 0.054968771703337346,
+      "depth": 8,
+      "l2_leaf_reg": 5.6839023719183785
+    }
+  },
+  "class_imbalance_handling": "is_unbalance (LightGBM) / scale_pos_weight (XGBoost) / auto_class_weights=Balanced (CatBoost)",
+  "funnel_violations": {
+    "p_prospect > p_quote": 15,
+    "p_inspection > p_prospect": 290,
+    "p_accepted > p_inspection": 776
+  }
+}
